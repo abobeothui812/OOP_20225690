@@ -1,0 +1,14 @@
+What happens if users choose “Cancel”?
+-Nếu chúng ta chọn cancel,chương trình sẽ luôn trả về cái khác yes vì do mục YES_OPTION? là điều kiện.Vậy nên kết quả sẽ là No
+How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t” (Suggestion: Use Javadocs or using Eclipse/Netbean IDE help).
+-Để điều chỉnh việc hiển thị chỉ 2 lựa chọn yes và no,em đã thêm JOptionPane.YES_NO_OPTION 
+-Còn đối với lựa chọn "I do"/"I don't": ta có thể đổi showConfirmDialog thành showOptionDialog cụ thể như sau
+Object[] options = {"I do", "I don't"};
+int option = JOptionPane.showOptionDialog(null,
+    "Do you want to change to the first class ticket?",
+    "Choose an option",
+    JOptionPane.DEFAULT_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[0]);
