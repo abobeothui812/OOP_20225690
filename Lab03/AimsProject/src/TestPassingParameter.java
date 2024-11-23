@@ -17,11 +17,13 @@ public class TestPassingParameter {
     // Hàm swap: Thực hiện đổi chỗ hai đối tượng (nhưng không hiệu quả trong Java)
     public static void Rightswap(DigitalVideoDisc Dvd1, DigitalVideoDisc Dvd2) {
         DigitalVideoDisc tmp = new DigitalVideoDisc(Dvd1.getTitle(), Dvd1.getCategory(), Dvd1.getDirector(), Dvd1.getLength(), Dvd1.getCost());
+        
         Dvd1.setTitle(Dvd2.getTitle());
         Dvd1.setCategory(Dvd2.getCategory());
         Dvd1.setDirector(Dvd2.getDirector());
         Dvd1.setLength(Dvd2.getLength());
         Dvd1.setCost(Dvd2.getCost());
+
         Dvd2.setTitle(tmp.getTitle());
         Dvd2.setCategory(tmp.getCategory());
         Dvd2.setDirector(tmp.getDirector());
