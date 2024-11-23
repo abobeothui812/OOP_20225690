@@ -17,5 +17,6 @@ public class Aims {
         // In tổng giá trị của các mặt hàng trong giỏ hàng
         System.out.println("Tong gia tri la: ");
         System.out.println(anOrder.totalCost());
+        
     }
 }

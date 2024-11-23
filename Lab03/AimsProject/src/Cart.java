@@ -28,6 +28,31 @@ public class Cart {
         System.out.println("The disc has been removed");
     }
 
+    public void addDigitalVideoDisc(DigitalVideoDisc disc[]){
+        if(qtyOrdered < MAX_NUMBERS_ORDERED){
+            for (int i = 0; i < disc.length; i++) {
+                itemOrdered[qtyOrdered++] = disc[i];
+            }
+            System.out.println("The disc has been added");
+        }
+        if(qtyOrdered == MAX_NUMBERS_ORDERED){
+            System.out.println("The cart is almost full");
+        }
+    }
+
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd1 , DigitalVideoDisc dvd2){
+        if(qtyOrdered < MAX_NUMBERS_ORDERED){
+            itemOrdered[qtyOrdered++] = dvd1;
+            itemOrdered[qtyOrdered++] = dvd2;
+            System.out.println("The disc has been added");
+        }
+        if(qtyOrdered == MAX_NUMBERS_ORDERED){
+            System.out.println("The cart is almost full");
+        }
+    }
+
+
+
     public float totalCost(){
         float total = 0;
         for (int i = 0; i < qtyOrdered; i++) {
