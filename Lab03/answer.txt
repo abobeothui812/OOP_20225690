@@ -1,0 +1,16 @@
+Câu 1:
+Giải thích chi tiết:
+
+Hàm swap:
+Khi bạn gọi swap(jungleDVD, cinderellaDVD), các bản sao của tham chiếu đến jungleDVD và cinderellaDVD được truyền vào hàm.
+Bên trong hàm swap, bạn đổi chỗ các tham chiếu này, nhưng điều này chỉ ảnh hưởng đến các bản sao tham chiếu bên trong hàm.
+Khi hàm swap kết thúc, các tham chiếu gốc trong hàm main vẫn giữ nguyên giá trị ban đầu, do đó tiêu đề của các đối tượng 
+jungleDVD và cinderellaDVD không thay đổi.
+
+Hàm changeTitle:
+Khi bạn gọi changeTitle(jungleDVD, cinderellaDVD.getTitle()), một bản sao của tham chiếu đến jungleDVD và giá trị của cinderellaDVD.getTitle() được truyền vào hàm.
+Bên trong hàm changeTitle, bạn sử dụng phương thức setTitle để thay đổi thuộc tính title của đối tượng dvd. Điều này trực tiếp tác động đến đối tượng gốc, vì vậy 
+tiêu đề của jungleDVD sẽ thay đổi.
+
+Lý do:
+Java sử dụng cơ chế truyền tham trị. Điều này có nghĩa là khi bạn truyền một đối tượng vào một phương thức, thực chất bạn đang truyền một bản sao của tham chiếu đến đối tượng đó. Bất kỳ thay đổi nào đối với tham chiếu này bên trong phương thức sẽ không ảnh hưởng đến tham chiếu gốc bên ngoài phương thức.
