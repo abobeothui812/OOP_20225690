@@ -66,4 +66,8 @@ public class DigitalVideoDisc {
         this.cost = cost;
         this.director = director;
     }   
+
+    public boolean isMatch(String title){
+        return this.title.equals(title);
+    }
 }
