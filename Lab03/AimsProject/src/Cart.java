@@ -70,4 +70,25 @@ public class Cart {
         System.out.println("Total cost: " + totalCost());
         System.out.println("**********************************************************************");
     }
+
+    public void search(int id){
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemOrdered[i].getId() == id) {
+                System.out.println("DVD -" + itemOrdered[i].getTitle() + " -" + itemOrdered[i].getCategory() + " -" + itemOrdered[i].getDirector() + " -" + itemOrdered[i].getLength() + ": " + itemOrdered[i].getCost() + "$");
+                return;
+            }
+        }
+        System.out.println("DVD not found");
+    }
+
+    public void search(String title){
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemOrdered[i].isMatch(title)) {
+                System.out.println("DVD -" + itemOrdered[i].getTitle() + " -" + itemOrdered[i].getCategory() + " -" + itemOrdered[i].getDirector() + " -" + itemOrdered[i].getLength() + ": " + itemOrdered[i].getCost() + "$");
+                return;
+            }
+        }
+        System.out.println("DVD not found");
+    }
+
 }
