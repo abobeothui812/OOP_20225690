@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class GarbageCreator {
+public class Nogarbage {
     public static void main(String[] args) {
         System.out.println("Current working directory: " + System.getProperty("user.dir"));
         String filename = "test.exe"; // test.exe is the name or path to an executable file
@@ -14,9 +14,9 @@ public class GarbageCreator {
         try {
             inputBytes = Files.readAllBytes(Paths.get(filename));
             startTime = System.currentTimeMillis();
-            String outputString = "";
+            StringBuilder outputString = new StringBuilder();
             for (byte b : inputBytes) {
-                outputString += (char) b;
+                outputString.append((char) b);
             }
             endTime = System.currentTimeMillis();
             System.out.println(endTime - startTime);
