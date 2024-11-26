@@ -1,4 +1,8 @@
+package hust.soict.ite6.aims.test.cart;
 import java.util.Scanner;
+
+import hust.soict.ite6.aims.cart.Cart;
+import hust.soict.ite6.aims.disc.*; 
 
 public class CartTest {
     public static void main(String[] args) {
