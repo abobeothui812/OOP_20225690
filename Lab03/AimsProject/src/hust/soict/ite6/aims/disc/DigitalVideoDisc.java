@@ -1,3 +1,4 @@
+package hust.soict.ite6.aims.disc;
 public class DigitalVideoDisc {
     private int id;
     private String title;
