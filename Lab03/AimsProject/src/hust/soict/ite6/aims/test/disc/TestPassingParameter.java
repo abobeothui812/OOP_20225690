@@ -1,3 +1,7 @@
+package hust.soict.ite6.aims.test.disc;
+
+import hust.soict.ite6.aims.disc.DigitalVideoDisc;
+
 public class TestPassingParameter {
     public static void main(String[] args) {
         // Tạo hai đối tượng DigitalVideoDisc
