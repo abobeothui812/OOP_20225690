@@ -14,21 +14,22 @@ public class CartTest {
                                                        "Roger Allers",
                                                        19.95f,
                                                        87);
-            cart.addDigitalVideoDisc(dvd1);
+            cart.addItemtoCart(dvd1);
 
             DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
                                                        "Science Fiction",
                                                        "George Lucas",
                                                        24.95f,
                                                        87);
-            cart.addDigitalVideoDisc(dvd2);
+            cart.addItemtoCart(dvd2);
 
             DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin",
                                                        "Animation",
                                                        18.99f);
-            cart.addDigitalVideoDisc(dvd3);
+            cart.addItemtoCart(dvd3);
 
             // Kiểm tra phương thức in
+            /* 
             cart.print();
 
             System.out.println("Enter the DVD you want to search (By title:)");
@@ -38,6 +39,7 @@ public class CartTest {
             System.out.println("Enter the DVD you want to search (By id: )");
             int searchedId = sc.nextInt();
             cart.search(searchedId);
+            */
         }
         
     }

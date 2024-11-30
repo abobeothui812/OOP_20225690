@@ -1,6 +1,6 @@
 package hust.soict.ite6.aims.media;
 
-public class track {
+public class track implements playable {
     private String title;
     private int length;
     public String getTitle() {
@@ -20,4 +20,9 @@ public class track {
         this.title = title;
         this.length = length;
     }
+    public void play() {
+        System.out.println("Playing DVD: " + this.getTitle());
+        System.out.println("DVD length: " + this.getLength());
+    }
+    
 }

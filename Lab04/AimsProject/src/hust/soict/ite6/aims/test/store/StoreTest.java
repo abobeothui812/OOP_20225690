@@ -12,7 +12,7 @@ public class StoreTest {
                                                        19.95f,
                                                        87);
     
-    DvDstore.addDVD(dvd1);
+    DvDstore.addItemtoStore(dvd1);
     
 
     DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
@@ -20,14 +20,14 @@ public class StoreTest {
                                                        "George Lucas",
                                                        24.95f,
                                                        124);
-    DvDstore.addDVD(dvd2);
+    DvDstore.addItemtoStore(dvd2);
 
     DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin",
                                                 "Animation",
                                                 18.99f);
-    DvDstore.addDVD(dvd3);
+    DvDstore.addItemtoStore(dvd3);
 
-    DvDstore.listDVD();
+    DvDstore.listItem();
 
     }
 }

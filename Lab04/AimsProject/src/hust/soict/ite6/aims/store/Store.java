@@ -1,41 +1,37 @@
 package hust.soict.ite6.aims.store;
-import hust.soict.ite6.aims.media.DigitalVideoDisc;
+import java.util.ArrayList;
+import java.util.List;
+
+import hust.soict.ite6.aims.media.media;
 
 public class Store {
-    private static int number=0;
-    DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[1000];
+    private List<media> itemsInStore = new ArrayList<media>();
 
-    public void addDVD(DigitalVideoDisc[] dvd) {
-        for( int i=0; i < dvd.length; i++) {
-            itemsInStore[number] = dvd[i];
-            
-            number++;
-        }
+    public void addItemtoStore(media media){ {
+        itemsInStore.add(media);
+        System.out.println("The Item has been added");
     }
+}
 
-    public void addDVD(DigitalVideoDisc dvd) {
-            itemsInStore[number] = dvd;
-            number++;
-            
-    }
+    
 
-    public void removeDVD(DigitalVideoDisc dvd) {
-        for( int i=0; i < number; i++) {
-            if( itemsInStore[i].isMatch(dvd.getTitle()) ) {
-                itemsInStore[i] = itemsInStore[number-1];
-                itemsInStore[number-1] = null;
-                number--;
-                break;
+    public void removeItemfromStore(media media) {
+        for( media item : itemsInStore) {
+            if( itemsInStore.contains(item) ) {
+                itemsInStore.remove(media);
+                System.out.println("The DVD has been removed");
+                return;
             }
         }
     }
 
-    public void listDVD() {
-        for( int i=0; i < number; i++) {
-            System.out.println(itemsInStore[i].getTitle());
+    public void listItem() {
+        for (media item : itemsInStore) {
+            System.out.println(item.getTitle());
         }
     }
 
 
     
 }
+
