@@ -1,5 +1,5 @@
 package hust.soict.ite6.aims.test.disc;
-import hust.soict.ite6.aims.disc.DigitalVideoDisc;
+import hust.soict.ite6.aims.media.DigitalVideoDisc;
 
 public class TestPassingParameter {
     public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class TestPassingParameter {
 
     // Hàm swap: Thực hiện đổi chỗ hai đối tượng (nhưng không hiệu quả trong Java)
     public static void Rightswap(DigitalVideoDisc Dvd1, DigitalVideoDisc Dvd2) {
-        DigitalVideoDisc tmp = new DigitalVideoDisc(Dvd1.getTitle(), Dvd1.getCategory(), Dvd1.getDirector(), Dvd1.getLength(), Dvd1.getCost());
+        DigitalVideoDisc tmp = new DigitalVideoDisc(Dvd1.getTitle(), Dvd1.getCategory(), Dvd1.getDirector(), Dvd1.getCost(), Dvd1.getLength());
         
         Dvd1.setTitle(Dvd2.getTitle());
         Dvd1.setCategory(Dvd2.getCategory());
