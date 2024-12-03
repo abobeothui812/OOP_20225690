@@ -11,7 +11,7 @@ public class ConcatenationInLoops {
             s += r.nextInt(2);
         }
         System.out.println(System.currentTimeMillis() - start); // This prints roughly 4500.
-        //System.out.println(s.length()); // Use the variable 's' to avoid the compile error.
+        System.out.println(s.length()); // Use the variable 's' to avoid the compile error.
 
         r = new Random(123);
         start = System.currentTimeMillis();
