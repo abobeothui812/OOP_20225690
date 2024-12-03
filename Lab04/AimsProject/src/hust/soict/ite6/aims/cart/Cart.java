@@ -7,13 +7,14 @@ import java.util.List;
 import hust.soict.ite6.aims.media.media;
 public class Cart {
     public static int MAX_NUMBERS_ORDERED = 20;
-   
-    private List<media> itemsOrdered = new ArrayList<media>();
+    public int numberOfItemsInCart = 0;
+    public List<media> itemsOrdered = new ArrayList<media>();
     
     public void addItemtoCart(media media){
         if(itemsOrdered.size() < MAX_NUMBERS_ORDERED){
             itemsOrdered.add(media);
             System.out.println("The Item has been added");
+            numberOfItemsInCart++;
         }
         if(itemsOrdered.size() == MAX_NUMBERS_ORDERED){
             System.out.println("The Cart is almost full");
@@ -57,6 +58,11 @@ public class Cart {
         return total;
     }
 
+    public void listItem() {
+        for (media item : itemsOrdered) {
+            System.out.println(item.toString());
+        }
+    }
     /* 
     public void print() {
         System.out.println("*************************** Cart *************************************");
@@ -66,26 +72,29 @@ public class Cart {
 
         System.out.println("Total cost: " + totalCost());
         System.out.println("**********************************************************************");
-    }
+    }*/
 
-    public void search(int id){
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (item.getId() == id) {
-                System.out.println("DVD -" + itemOrdered[i].getTitle() + " -" + itemOrdered[i].getCategory() + " -" + itemOrdered[i].getDirector() + " -" + itemOrdered[i].getLength() + ": " + itemOrdered[i].getCost() + "$");
-                return;
+    public media search(String title){
+            
+        for (media item : itemsOrdered) {
+            if (item.getTitle().equals(title)) {
+                System.out.println(item.toString());
+                return item;
             }
         }
-        System.out.println("DVD not found");
+        System.out.println("The item is not in the store");
+        return null;
     }
 
-    public void search(String title){
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemOrdered[i].isMatch(title)) {
-                System.out.println("DVD -" + itemOrdered[i].getTitle() + " -" + itemOrdered[i].getCategory() + " -" + itemOrdered[i].getDirector() + " -" + itemOrdered[i].getLength() + ": " + itemOrdered[i].getCost() + "$");
-                return;
+        public media search(int id){  
+            for (media item : itemsOrdered) {
+                if (item.getId()==id) {
+                    System.out.println(item.toString());
+                    return item;
+                }
             }
+            System.out.println("The item is not in the store");
+            return null;
         }
-        System.out.println("DVD not found");
-    }
-    */
+    
 }

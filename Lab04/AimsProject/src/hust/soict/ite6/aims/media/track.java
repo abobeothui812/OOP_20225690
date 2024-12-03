@@ -25,4 +25,15 @@ public class track implements playable {
         System.out.println("DVD length: " + this.getLength());
     }
     
+    @Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+
+    if (!(obj instanceof track)) return false;
+
+    track other = (track) obj;
+
+    return this.title != null && this.title.equals(other.title) 
+           && this.length == other.length;
+}
 }

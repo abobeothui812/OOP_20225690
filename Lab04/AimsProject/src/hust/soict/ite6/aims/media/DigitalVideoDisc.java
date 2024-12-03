@@ -13,7 +13,7 @@ public class DigitalVideoDisc  extends disc implements playable {
     }
 
     public DigitalVideoDisc(String title, String category, String director, float cost, int length){
-        super(director, category, director, cost, length);
+        super(title, category, director, cost, length);
         setId(nbDigitalVideoDiscs++);
     }   
 
@@ -30,5 +30,9 @@ public class DigitalVideoDisc  extends disc implements playable {
     }
     public boolean isMatch(String title){
         return getTitle().equals(title);
+    }
+
+    public String toString(){
+        return "DVD - " + getTitle() + " - " + getCategory() + " - " + getDirector() + " - " + getLength() + " : " + getCost() + "$";
     }
 }

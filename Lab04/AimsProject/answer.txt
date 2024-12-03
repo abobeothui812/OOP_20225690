@@ -1,16 +1,44 @@
-Câu 1:
-Giải thích chi tiết:
 
-Hàm swap:
-Khi bạn gọi swap(jungleDVD, cinderellaDVD), các bản sao của tham chiếu đến jungleDVD và cinderellaDVD được truyền vào hàm.
-Bên trong hàm swap, bạn đổi chỗ các tham chiếu này, nhưng điều này chỉ ảnh hưởng đến các bản sao tham chiếu bên trong hàm.
-Khi hàm swap kết thúc, các tham chiếu gốc trong hàm main vẫn giữ nguyên giá trị ban đầu, do đó tiêu đề của các đối tượng 
-jungleDVD và cinderellaDVD không thay đổi.
+1.Lớp nào nên implement giao diện Comparable?
 
-Hàm changeTitle:
-Khi bạn gọi changeTitle(jungleDVD, cinderellaDVD.getTitle()), một bản sao của tham chiếu đến jungleDVD và giá trị của cinderellaDVD.getTitle() được truyền vào hàm.
-Bên trong hàm changeTitle, bạn sử dụng phương thức setTitle để thay đổi thuộc tính title của đối tượng dvd. Điều này trực tiếp tác động đến đối tượng gốc, vì vậy 
-tiêu đề của jungleDVD sẽ thay đổi.
+Lớp Media nên implement giao diện Comparable vì đây là lớp cơ sở chung cho tất cả các loại phương tiện (Media). 
+Nếu chúng ta muốn các lớp con như DVD, CD, hoặc Book có cách sắp xếp mặc định, việc thực hiện giao diện này ở lớp Media sẽ đảm bảo tính nhất quán.
 
-Lý do:
-Java sử dụng cơ chế truyền tham trị. Điều này có nghĩa là khi bạn truyền một đối tượng vào một phương thức, thực chất bạn đang truyền một bản sao của tham chiếu đến đối tượng đó. Bất kỳ thay đổi nào đối với tham chiếu này bên trong phương thức sẽ không ảnh hưởng đến tham chiếu gốc bên ngoài phương thức.
+2.Trong các lớp đó, phương thức compareTo() nên được triển khai như thế nào để phản ánh thứ tự sắp xếp mong muốn?
+
+Phương thức compareTo() của lớp Media nên được viết như sau để sắp xếp theo title trước, sau đó theo cost:
+
+public int compareTo(media other) {
+    int titleComparison = this.title.compareTo(other.title);
+    if (titleComparison == 0) {
+        return Float.compare(this.cost, other.cost);
+    }
+    return titleComparison;
+}
+Điều này sẽ đảm bảo:
+-Sắp xếp theo title theo thứ tự alphabet.
+-Nếu title giống nhau, thì so sánh theo cost tăng dần.
+
+3.Có thể có hai quy tắc sắp xếp cho các phần tử (theo title rồi cost, hoặc theo cost rồi title) nếu sử dụng giao diện Comparable không?
+
+Không thể. Giao diện Comparable chỉ cho phép một quy tắc sắp xếp mặc định, được định nghĩa trong phương thức compareTo(). 
+Nếu bạn muốn có nhiều quy tắc sắp xếp khác nhau, bạn phải sử dụng thêm các Comparator bên ngoài thay vì chỉ dựa vào Comparable.
+
+4.Giả sử lớp DVD có một quy tắc sắp xếp khác với các loại media khác (theo title, sau đó giảm dần length, rồi đến cost). Làm thế nào để chỉnh sửa mã để cho phép điều này?
+
+public int compareTo(media other) {
+    if (other instanceof DigitalVideoDisc) {
+        DigitalVideoDisc otherDVD = (DigitalVideoDisc) other;
+        int titleComparison = this.title.compareTo(otherDVD.title);
+        if (titleComparison == 0) {
+            int lengthComparison = Integer.compare(otherDVD.length, this.length); // Giảm dần length
+            if (lengthComparison == 0) {
+                return Float.compare(this.cost, otherDVD.cost); // Tăng dần cost
+            }
+            return lengthComparison;
+        }
+        return titleComparison;
+    }
+    
+    return super.compareTo(other);
+}

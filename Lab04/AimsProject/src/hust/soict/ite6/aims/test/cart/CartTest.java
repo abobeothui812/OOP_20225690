@@ -28,6 +28,8 @@ public class CartTest {
                                                        18.99f);
             cart.addItemtoCart(dvd3);
 
+            System.out.println(cart.toString());
+
             // Kiểm tra phương thức in
             /* 
             cart.print();

@@ -5,17 +5,17 @@ import java.util.List;
 public class book extends media {
     
     private List<String> authors = new ArrayList<String>();
-   
+    private static int nbBooks = 0;
     public List<String> getAuthors() {
         return authors;
     }
     
 
-    public book(int id, String title, String category, float cost) {
+    public book( String title, String category, float cost) {
         setTitle(title);
         setCategory(category);
         setCost(cost);
-        setId(id);
+        setId(nbBooks++);
     }
 
     public void addAuthor(String authorName){
@@ -37,5 +37,9 @@ public class book extends media {
         else{
             System.out.println("Author is not in the list");
         }
+    }
+
+    public String toString() {
+        return "Book - " + getTitle() + " - " + getCategory() + " - " + getCost() + "$";
     }
 }
