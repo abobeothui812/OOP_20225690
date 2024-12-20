@@ -1,0 +1,44 @@
+
+1.Lớp nào nên implement giao diện Comparable?
+
+Lớp Media nên implement giao diện Comparable vì đây là lớp cơ sở chung cho tất cả các loại phương tiện (Media). 
+Nếu chúng ta muốn các lớp con như DVD, CD, hoặc Book có cách sắp xếp mặc định, việc thực hiện giao diện này ở lớp Media sẽ đảm bảo tính nhất quán.
+
+2.Trong các lớp đó, phương thức compareTo() nên được triển khai như thế nào để phản ánh thứ tự sắp xếp mong muốn?
+
+Phương thức compareTo() của lớp Media nên được viết như sau để sắp xếp theo title trước, sau đó theo cost:
+
+public int compareTo(media other) {
+    int titleComparison = this.title.compareTo(other.title);
+    if (titleComparison == 0) {
+        return Float.compare(this.cost, other.cost);
+    }
+    return titleComparison;
+}
+Điều này sẽ đảm bảo:
+-Sắp xếp theo title theo thứ tự alphabet.
+-Nếu title giống nhau, thì so sánh theo cost tăng dần.
+
+3.Có thể có hai quy tắc sắp xếp cho các phần tử (theo title rồi cost, hoặc theo cost rồi title) nếu sử dụng giao diện Comparable không?
+
+Không thể. Giao diện Comparable chỉ cho phép một quy tắc sắp xếp mặc định, được định nghĩa trong phương thức compareTo(). 
+Nếu bạn muốn có nhiều quy tắc sắp xếp khác nhau, bạn phải sử dụng thêm các Comparator bên ngoài thay vì chỉ dựa vào Comparable.
+
+4.Giả sử lớp DVD có một quy tắc sắp xếp khác với các loại media khác (theo title, sau đó giảm dần length, rồi đến cost). Làm thế nào để chỉnh sửa mã để cho phép điều này?
+
+public int compareTo(media other) {
+    if (other instanceof DigitalVideoDisc) {
+        DigitalVideoDisc otherDVD = (DigitalVideoDisc) other;
+        int titleComparison = this.title.compareTo(otherDVD.title);
+        if (titleComparison == 0) {
+            int lengthComparison = Integer.compare(otherDVD.length, this.length); // Giảm dần length
+            if (lengthComparison == 0) {
+                return Float.compare(this.cost, otherDVD.cost); // Tăng dần cost
+            }
+            return lengthComparison;
+        }
+        return titleComparison;
+    }
+    
+    return super.compareTo(other);
+}
