@@ -1,5 +1,6 @@
 package Lab05.AimsProject.src.hust.soict.ite6.aims.cart;
 
+import Lab05.AimsProject.src.hust.soict.ite6.aims.exception.TotalCostException;
 import Lab05.AimsProject.src.hust.soict.ite6.aims.media.media;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -59,9 +60,15 @@ public class Cart {
 
 
 
-    public float totalCost(){
+    public float totalCost() throws TotalCostException{
         float total = 0;
         for (media item : itemsOrdered) {
+            if(item.getCost() < 0){
+                throw new TotalCostException("The cost of the item is negative");
+            }
+            if(total < 0){
+                throw new TotalCostException("The total cost is negative");
+            }
             total += item.getCost();
         }
         return total;
@@ -83,9 +90,11 @@ public class Cart {
         System.out.println("**********************************************************************");
     }*/
 
-    public media search(String title){
-            
-        for (media item : itemsOrdered) {
+    public media search(String title) throws NullPointerException{
+        if(title == null){
+            throw new NullPointerException("The title is null");
+        }
+        for (media item : itemsOrdered){
             if (item.getTitle().equals(title)) {
                 System.out.println(item.toString());
                 return item;
@@ -95,7 +104,10 @@ public class Cart {
         return null;
     }
 
-        public media search(int id){  
+        public media search(int id) throws NullPointerException{  
+            if(id == 0){
+                throw new NullPointerException("The id is null");
+            }
             for (media item : itemsOrdered) {
                 if (item.getId()==id) {
                     System.out.println(item.toString());

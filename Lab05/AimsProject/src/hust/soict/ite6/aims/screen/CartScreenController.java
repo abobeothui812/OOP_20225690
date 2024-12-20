@@ -3,6 +3,7 @@ package Lab05.AimsProject.src.hust.soict.ite6.aims.screen;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import Lab05.AimsProject.src.hust.soict.ite6.aims.cart.Cart;
+import Lab05.AimsProject.src.hust.soict.ite6.aims.exception.TotalCostException;
 import Lab05.AimsProject.src.hust.soict.ite6.aims.media.disc;
 import Lab05.AimsProject.src.hust.soict.ite6.aims.media.media;
 import Lab05.AimsProject.src.hust.soict.ite6.aims.media.playable;
@@ -80,7 +81,12 @@ public class CartScreenController {
         colCategory.setCellValueFactory(new PropertyValueFactory<media, String>("category"));
         colCost.setCellValueFactory(new PropertyValueFactory<media, Float>("cost"));
         tblMedia.setItems(this.cart.getItemOrdered());
-        TotalCost.setText(cart.totalCost() + "$");
+        try {
+            TotalCost.setText(cart.totalCost() + "$");
+        } catch (TotalCostException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
         btnPlay.setVisible(false);
         btnRemove.setVisible(false);
 
@@ -137,12 +143,18 @@ public class CartScreenController {
         }
     }
 
+    @SuppressWarnings("unused")
     @FXML
     void placeOrderPressed(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Place Order");
         alert.setHeaderText(null);
-        alert.setContentText("Order placed successfully!\nTotal cost: " + cart.totalCost() + "$\nThanks for your purchase!");
+        try {
+            alert.setContentText("Order placed successfully!\nTotal cost: " + cart.totalCost() + "$\nThanks for your purchase!");
+        } catch (TotalCostException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
         alert.showAndWait();
         alert.setOnHidden(e -> {
             Stage stage = (Stage) placeOrderBtn.getScene().getWindow();
@@ -166,13 +178,21 @@ public class CartScreenController {
     }
 
     private void playMedia(media media) {
-        Stage stage = new Stage();
-        VBox vbox = new VBox(new Label("Now playing: " + media.getTitle()));
-        vbox.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(vbox, 300, 100);
-        stage.setScene(scene);
-        stage.setTitle("Playing Media");
-        stage.show();
+        try {
+            Stage stage = new Stage();
+            VBox vbox = new VBox(new Label("Now playing: " + media.getTitle()));
+            vbox.setAlignment(Pos.CENTER);
+            Scene scene = new Scene(vbox, 300, 100);
+            stage.setScene(scene);
+            stage.setTitle("Playing Media");
+            stage.show();
+        }catch (Exception e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to play media: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML
