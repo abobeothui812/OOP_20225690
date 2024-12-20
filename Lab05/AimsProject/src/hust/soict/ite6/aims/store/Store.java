@@ -7,20 +7,22 @@ import Lab05.AimsProject.src.hust.soict.ite6.aims.media.media;
 public class Store {
     private List<media> itemsInStore = new ArrayList<media>();
 
-    public void addItemtoStore(media media){ {
-        try {
+    public void addItemtoStore(media media) throws NullPointerException{ {
+        if (media == null) {
+            throw new NullPointerException("The item is null");
+        }
             itemsInStore.add(media);
             System.out.println("The Item has been added");
-        } catch (Exception e) {
-            System.out.println("The Item is already in the store");
-            e.printStackTrace();
-        }
+        
     }
 }
 
     
 
-    public void removeItemfromStore(media media) {
+    public void removeItemfromStore(media media) throws NullPointerException {
+        if (media == null) {
+            throw new NullPointerException("The item is null");
+        }
         for( media item : itemsInStore) {
             if( itemsInStore.contains(item) ) {
                 itemsInStore.remove(media);
@@ -40,7 +42,10 @@ public class Store {
         return (ArrayList<media>) itemsInStore;
     }
 
-    public media search(String title){
+    public media search(String title) throws NullPointerException{
+        if(title == null){
+            throw new NullPointerException("The title is null");
+        }
             
             for (media item : itemsInStore) {
                 if (item.getTitle().equals(title)) {
